@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmins:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Hello</h1>
+	<p th:text="${msg}"></p>
+	<h3>リンク</h3>
+	<a href="/hello?msg=こんにちは">Query StringによるGETパラメータ</a>
+	<h3>フォームによるGETパラメータ</h3>
+	<!-- form action="/hello" method="get" -->
+	<form id="myForm" action="/hello" method="post">
+		<input type="text" name="msg">
+		<button type="submit">送信</button>
+	</form>
+	<div id="result"></div>
+</body>
+<script>
+	        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームの通常の動作を停止する
+
+            var formData = new FormData(this);
+
+            fetch('/hello', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerHTML = data; // レスポンスを表示する
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+</script>
+</html>

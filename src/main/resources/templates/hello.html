@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmins:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Hello</h1>
+	<p th:text="${msg}"></p>
+	<h3>リンク</h3>
+	<a href="/hello?msg=こんにちは">Query StringによるGETパラメータ</a>
+	<h3>フォームによるGETパラメータ</h3>
+	<form action="/hello" method="get">
+		<input type="text" name="msg">
+		<button>送信</button>
+	</form>
+</body>
+</html>
